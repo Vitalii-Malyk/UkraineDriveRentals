@@ -15,8 +15,21 @@ export const StyledSpan = styled("span")`
   color: #3470ff;
 `;
 
-export const StyledImg = styled("img")`
+export const ImgWrapper = styled("div")`
+  width: 274px;
+  height: 268px;
+  border-radius: 12px;
   margin-bottom: 14px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+`;
+
+export const StyledImg = styled("img")`
+  /* width: 401px;
+  height: 268px; */
+  height: 100%;
+  width: auto;
 `;
 
 export const StyledTitle = styled("p")`

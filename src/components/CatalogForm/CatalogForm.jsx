@@ -3,22 +3,34 @@ import axios from "axios";
 import priceOptions from "../../helpers/functions/priceOptions";
 
 const CatalogForm = () => {
-  const [brands, setBrands] = useState([]);
+  const [brands] = useState([]);
   const [brand, setBrand] = useState("");
   const [mileageFrom, setMileageFrom] = useState("");
   const [mileageTo, setMileageTo] = useState("");
   const [price, setPrice] = useState("");
 
-  useEffect(() => {
-    axios
-      .get("https://example.com/api/brands")
-      .then((response) => {
-        setBrands(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching brands:", error);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get("https://65babcceb4d53c0665538e25.mockapi.io/cars")
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       // setBrands(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching brands:", error);
+  //     });
+  // }, []);
+
+  // useEffect(() => {
+  //   axios
+  //     .get("https://example.com/api/brands")
+  //     .then((response) => {
+  //       setBrands(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching brands:", error);
+  //     });
+  // }, []);
 
   const handleBrandChange = (e) => {
     setBrand(e.target.value);
