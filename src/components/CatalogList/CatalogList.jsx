@@ -6,10 +6,10 @@ import CatalogItem from "../CatalogItem/CatalogItem";
 import axios from "axios";
 
 const CatalogList = () => {
-  const [showNotFound, setShowNotFound] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [showNotFound] = useState(false);
+  const [isLoading] = useState(false);
   const [cars, setCars] = useState([]);
-  const [filters, setFilters] = useState([]);
+  // const [filters, setFilters] = useState([]);
 
   useEffect(() => {
     axios
