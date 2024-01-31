@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/shop_auto/static/css/main.dc4d6ff2.css",
+    "main.js": "/shop_auto/static/js/main.fb2aa6fd.js",
+    "index.html": "/shop_auto/index.html",
+    "main.dc4d6ff2.css.map": "/shop_auto/static/css/main.dc4d6ff2.css.map",
+    "main.fb2aa6fd.js.map": "/shop_auto/static/js/main.fb2aa6fd.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.dc4d6ff2.css",
+    "static/js/main.fb2aa6fd.js"
+  ]
+}
