@@ -1,22 +1,29 @@
-import { Link, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import { Suspense } from "react";
+import Loader from "../Loader/Loader";
+import { Header, StyledLink } from "./Layout.staled";
 
-export const Layout = () => {
+const Layout = () => {
   return (
     <div>
-      <header>
+      <Header>
         <h2>
           <span role="img" aria-label="computer icon">
             💻
           </span>{" "}
-          GoMerch Store
+          CarDiscoverUA
         </h2>
         <nav>
-          <Link to="/">Home</Link>
-          <Link to="/catalog">Catalog</Link>
-          <Link to="/favorites">Favorites</Link>
+          <StyledLink to="/">Home</StyledLink>
+          <StyledLink to="/catalog">Catalog</StyledLink>
+          <StyledLink to="/favorites">Favorites</StyledLink>
         </nav>
-      </header>
-      <Outlet />
+      </Header>
+      <Suspense fallback={<Loader />}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 };
+
+export default Layout;

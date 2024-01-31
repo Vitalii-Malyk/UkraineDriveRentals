@@ -1,10 +1,11 @@
+import CatalogForm from "../components/CatalogForm/CatalogForm";
+
 const CatalogPage = () => {
   return (
     <>
-      <div>
-        <h1>Catalog</h1>
-      </div>
+      <CatalogForm />
     </>
   );
 };
+
 export default CatalogPage;
