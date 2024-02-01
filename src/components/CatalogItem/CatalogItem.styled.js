@@ -4,6 +4,7 @@ export const ItemWrapper = styled("div")`
   height: 426px;
   width: 274px;
   border-radius: 10%;
+  position: relative;
 `;
 
 export const TitleWrapper = styled("div")`
@@ -48,4 +49,16 @@ export const StyledButton = styled("button")`
   border-radius: 12px;
   background-color: rgba(52, 112, 255, 1);
   color: rgba(255, 255, 255, 1);
+`;
+
+export const StyledIconButton = styled("button")`
+  border: none;
+  background: none;
+  position: absolute;
+  outline: none;
+  top: 14px;
+  right: 14px;
+  &:focus-visible {
+    outline: none;
+  }
 `;
