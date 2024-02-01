@@ -7,6 +7,7 @@ import {
   StyledTitle,
   TitleWrapper,
 } from "./CatalogItem.styled";
+import placeholderImage from "../../helpers/image/404.jpg";
 
 const CatalogItem = ({ cars }) => {
   const addressWords = cars.address.split(" ");
@@ -22,7 +23,7 @@ const CatalogItem = ({ cars }) => {
     <>
       <ItemWrapper>
         <ImgWrapper>
-          <StyledImg src={cars.img} alt="fotoCars" />
+          <StyledImg src={cars.img || placeholderImage} alt="fotoCars" />
         </ImgWrapper>
         <TitleWrapper>
           <StyledTitle>

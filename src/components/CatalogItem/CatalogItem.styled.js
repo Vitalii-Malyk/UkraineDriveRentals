@@ -26,8 +26,6 @@ export const ImgWrapper = styled("div")`
 `;
 
 export const StyledImg = styled("img")`
-  /* width: 401px;
-  height: 268px; */
   height: 100%;
   width: auto;
 `;

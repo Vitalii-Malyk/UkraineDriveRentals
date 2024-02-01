@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Layout from "../Layout/Layout";
+import GlobalStyle from "../../styles/GlobalStyle.js";
 
 import CatalogPage from "../../page/CatalogPage.jsx";
 import FavoritesPage from "../../page/FavoritesPage.jsx";
@@ -20,6 +21,7 @@ function App() {
           </Route>
         </Routes>
       </Suspense>
+      <GlobalStyle />
     </>
   );
 }
