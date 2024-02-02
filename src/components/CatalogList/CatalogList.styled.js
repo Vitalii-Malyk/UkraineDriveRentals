@@ -16,9 +16,12 @@ export const List = styled("ul")`
   justify-content: center;
 `;
 export const LoadMoreButton = styled("button")`
+  border: none;
+  background-color: transparent;
   font-weight: 500;
   font-size: 16px;
   line-height: 150%;
   text-decoration: underline;
   color: #3470ff;
+  margin-top: 100px;
 `;

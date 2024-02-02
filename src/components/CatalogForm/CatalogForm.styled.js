@@ -23,7 +23,6 @@ export const SelectBrandStyled = styled("select")`
   height: 48px;
   background: #f7f7fb;
   border: none;
-  cursor: pointer;
 `;
 
 export const SelectPriceStyled = styled("select")`
@@ -33,7 +32,6 @@ export const SelectPriceStyled = styled("select")`
   height: 48px;
   background: #f7f7fb;
   border: none;
-  cursor: pointer;
 `;
 
 export const InputWrapper = styled("div")`

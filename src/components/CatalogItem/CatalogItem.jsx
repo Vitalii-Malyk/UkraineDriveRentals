@@ -2,11 +2,13 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   ImgWrapper,
   ItemWrapper,
+  StyledButton,
   StyledIconButton,
   StyledImg,
   StyledSpan,
   StyledText,
   StyledTitle,
+  TextWrapper,
   TitleWrapper,
 } from "./CatalogItem.styled";
 import placeholderImage from "../../helpers/image/404.jpg";
@@ -24,7 +26,7 @@ const CatalogItem = ({ cars }) => {
   const model = cars.model;
   const rentalCompany = cars.rentalCompany;
   const id = cars.id;
-  const accessories = cars.accessories[0];
+  const accessories = cars.accessories[1];
 
   const handleFavoriteToggle = () => {
     dispatch(toggleFavorite(id));
@@ -46,8 +48,10 @@ const CatalogItem = ({ cars }) => {
           </StyledTitle>
           <StyledTitle>{cars.rentalPrice}</StyledTitle>
         </TitleWrapper>
-        <StyledText>{`${city} | ${country} | ${rentalCompany} | ${type} | ${model} | ${id} | ${accessories}`}</StyledText>
-        <button>learn more</button>
+        <TextWrapper>
+          <StyledText>{`${city} | ${country} | ${rentalCompany} | ${type} | ${model} | ${id} | ${accessories}`}</StyledText>
+        </TextWrapper>
+        <StyledButton>Learn more</StyledButton>
       </ItemWrapper>
     </>
   );

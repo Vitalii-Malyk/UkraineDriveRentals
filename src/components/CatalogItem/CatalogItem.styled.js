@@ -40,15 +40,6 @@ export const StyledText = styled("p")`
   color: rgba(18, 20, 23, 0.5);
   font-size: 12px;
   line-height: 1.5;
-  margin-bottom: 28px;
-`;
-
-export const StyledButton = styled("button")`
-  width: 274px;
-  height: 44px;
-  border-radius: 12px;
-  background-color: rgba(52, 112, 255, 1);
-  color: rgba(255, 255, 255, 1);
 `;
 
 export const StyledIconButton = styled("button")`
@@ -61,4 +52,25 @@ export const StyledIconButton = styled("button")`
   &:focus-visible {
     outline: none;
   }
+`;
+
+export const TextWrapper = styled("div")`
+  width: 270px;
+  height: 40px;
+  overflow: hidden;
+  margin-bottom: 28px;
+`;
+
+export const StyledButton = styled("button")`
+  width: 274px;
+  height: 44px;
+  border-radius: 12px;
+  border: none;
+  background-color: rgba(52, 112, 255, 1);
+  color: rgba(255, 255, 255, 1);
+
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.43;
+  color: #fff;
 `;

@@ -10,22 +10,26 @@ const CatalogList = ({ searchTermProp }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [cars, setCars] = useState([]);
   const [visibleCars, setVisibleCars] = useState(12);
+  const [hasMoreData, setHasMoreData] = useState(true);
 
   useEffect(() => {
     setIsLoading(true);
     axios
-      .get("https://65babcceb4d53c0665538e25.mockapi.io/cars")
+      .get(
+        `https://65babcceb4d53c0665538e25.mockapi.io/cars?limit=${visibleCars}&page=1`
+      )
       .then((response) => {
-        console.log(response.data);
-        setCars(response.data);
+        const data = response.data;
+        setCars(data);
         setIsLoading(false);
-        setShowNotFound(response.data.length === 0);
+        setShowNotFound(data.length === 0);
+        setHasMoreData(data.length >= visibleCars);
       })
       .catch((error) => {
-        console.error("Error fetching brands:", error);
+        console.error("Error fetching cars:", error);
         setIsLoading(false);
       });
-  }, []);
+  }, [visibleCars]);
 
   useEffect(() => {
     setVisibleCars(12);
@@ -35,18 +39,16 @@ const CatalogList = ({ searchTermProp }) => {
     setVisibleCars((prevVisibleCars) => prevVisibleCars + 12);
   };
 
-  const filteredCars = cars;
-
   return (
     <ListWrapper>
       {showNotFound && <NotFoundMessage />}
       <List>
-        {filteredCars.slice(0, visibleCars).map((car, index) => (
+        {cars.map((car, index) => (
           <CatalogItem cars={car} key={index} />
         ))}
         {isLoading && <Loader />}
       </List>
-      {!isLoading && visibleCars < filteredCars.length && (
+      {!isLoading && hasMoreData && (
         <LoadMoreButton onClick={loadMore}>Load more</LoadMoreButton>
       )}
     </ListWrapper>
