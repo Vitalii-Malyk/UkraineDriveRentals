@@ -1,9 +1,7 @@
-import { useDispatch, useSelector } from "react-redux";
 import {
   ImgWrapper,
   ItemWrapper,
   StyledButton,
-  StyledIconButton,
   StyledImg,
   StyledSpan,
   StyledText,
@@ -12,44 +10,58 @@ import {
   TitleWrapper,
 } from "./CatalogItem.styled";
 import placeholderImage from "../../helpers/image/404.jpg";
-import { toggleFavorite } from "../../redux/slice";
-import HeartIcon from "../HeartIcon/HeartIcon";
 
-const CatalogItem = ({ cars }) => {
-  const dispatch = useDispatch();
-  const isFavorite = useSelector((state) => state.favorites.includes(cars.id));
+import FavoritesBtn from "../Buttons/FavoritesButton";
 
-  const addressWords = cars.address.split(" ");
+const CatalogItem = ({
+  make,
+  img,
+  id,
+  years,
+  mileage,
+  rentalPrice,
+  type,
+  model,
+  address,
+  rentalCompany,
+  functionalities,
+}) => {
+  const addressWords = address.split(" ");
   const city = addressWords[addressWords.length - 2].slice(0, -1);
   const country = addressWords[addressWords.length - 1];
-  const type = cars.type;
-  const model = cars.model;
-  const rentalCompany = cars.rentalCompany;
-  const id = cars.id;
-  const accessories = cars.accessories[1];
 
-  const handleFavoriteToggle = () => {
-    dispatch(toggleFavorite(id));
-  };
+  const functional = functionalities[1];
 
   return (
     <>
       <ItemWrapper>
-        <StyledIconButton onClick={handleFavoriteToggle}>
-          {isFavorite ? <HeartIcon /> : <HeartIcon />}
-        </StyledIconButton>
+        <FavoritesBtn
+          advert={{
+            make,
+            img,
+            id,
+            years,
+            mileage,
+            rentalPrice,
+            type,
+            model,
+            address,
+            rentalCompany,
+            functionalities,
+          }}
+        />
         <ImgWrapper>
-          <StyledImg src={cars.img || placeholderImage} alt="fotoCars" />
+          <StyledImg src={img || placeholderImage} alt="fotoCars" />
         </ImgWrapper>
         <TitleWrapper>
           <StyledTitle>
-            {cars.make}
-            <StyledSpan>{cars.model}</StyledSpan>
+            {make}
+            <StyledSpan>{model}</StyledSpan>
           </StyledTitle>
-          <StyledTitle>{cars.rentalPrice}</StyledTitle>
+          <StyledTitle>{rentalPrice}</StyledTitle>
         </TitleWrapper>
         <TextWrapper>
-          <StyledText>{`${city} | ${country} | ${rentalCompany} | ${type} | ${model} | ${id} | ${accessories}`}</StyledText>
+          <StyledText>{`${city} | ${country} | ${rentalCompany} | ${type} | ${model} | ${id} | ${functional}`}</StyledText>
         </TextWrapper>
         <StyledButton>Learn more</StyledButton>
       </ItemWrapper>
