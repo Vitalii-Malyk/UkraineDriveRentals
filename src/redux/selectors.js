@@ -5,3 +5,4 @@ export const selectFavorites = (state) => state.favorites.adverts;
 export const selectPage = (state) => state.adverts.page;
 export const selectFilter = (state) => state.filter;
 export const selectTotalFavorites = (state) => state.favorites.adverts.length;
+export const selectError = (state) => state.adverts.isError;

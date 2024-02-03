@@ -4,7 +4,7 @@ import { addToFavorite, deleteFromFavorites } from "../../redux/favoriteSlice";
 import { FavBtn, FavIconActive, FavIconNormal } from "./FavoritesBtn.styled";
 import icons from "../../helpers/icons/sprite.svg";
 
-const FavoritesBtn = ({ advert }) => {
+const FavoritesButton = ({ advert }) => {
   const dispatch = useDispatch();
   const favAdverts = useSelector(selectFavorites);
   const isAdvertInFavorites = favAdverts.some((item) => item.id === advert.id);
@@ -27,4 +27,4 @@ const FavoritesBtn = ({ advert }) => {
   );
 };
 
-export default FavoritesBtn;
+export default FavoritesButton;

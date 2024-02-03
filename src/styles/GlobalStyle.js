@@ -17,11 +17,12 @@ ${normalize}
    --color-fav-active: rgb(52, 112, 255);
    --color-fav-normal: rgba(255, 255, 255, 0.8);
    --color-modal-backdrop: rgba(18, 20, 23, 0.5);
+   --color-control-background: rgba(247, 247, 251, 1);
    --shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
   0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
 
    /* typography */
-   --family: 'Manrope', Helvetica;
+  
    --fw-semi-bold: 600;
    --fw-normal: 500;
    --fw-light: 400;

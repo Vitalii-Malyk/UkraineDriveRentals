@@ -1,143 +1,245 @@
-import React, { useState } from "react";
-import priceOptions from "../../helpers/functions/priceOptions";
-import { StyledCustomSelect } from "../SelectMake/SelectMakeStyled";
-
+import { selectAdverts, selectFilter } from "../../redux/selectors";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Select from "react-select";
+import { useDispatch, useSelector } from "react-redux";
 import {
-  ButtonStyled,
-  Div,
-  Divider,
+  Container,
   Form,
-  InputStyledOne,
-  InputStyledTwo,
-  InputWrapper,
+  InputContainer,
+  InputLeft,
+  InputRight,
   Label,
-  SelectPriceStyled,
-  Span,
+  SearchButton,
+  SelectContainer,
+  UnitLeft,
+  UnitRight,
+  Wrapper,
 } from "./CatalogForm.styled";
-import modelCars from "../../helpers/data/makes.json";
 
-const CatalogForm = () => {
-  const [brands, setBrands] = useState("");
-  const [price, setPrice] = useState("");
-  const [inputValueOne, setInputValueOne] = useState("");
-  const [inputValueTwo, setInputValueTwo] = useState("");
-  const [isValidOne, setIsValidOne] = useState(true);
-  const [isValidTwo, setIsValidTwo] = useState(true);
-  const [allModelCars, setAllModelCars] = useState(
-    modelCars.map((model) => ({ value: model, label: model }))
+import { useState } from "react";
+import { setMake, setPrice } from "../../redux/filterSlice";
+import { fetchFilteredAdverts } from "../../services/Api";
+
+const CatalogForm = ({ onFilterChange }) => {
+  const filter = useSelector(selectFilter);
+  const dispatch = useDispatch();
+  const adverts = useSelector(selectAdverts);
+  const { selectedMake, selectedPrice } = filter || {};
+
+  const [minValue, setMinValue] = useState("");
+  const [maxValue, setMaxValue] = useState("");
+
+  const makeOptions = adverts.map((advert) => ({
+    value: advert.make,
+    label: advert.make,
+  }));
+
+  const priceRangeOptions = [];
+  for (let i = 30; i <= 500; i += 10) {
+    priceRangeOptions.push({ value: i, label: `${i}` });
+  }
+
+  const applyFilter = async (e) => {
+    e.preventDefault();
+    dispatch(fetchFilteredAdverts());
+  };
+
+  const handlePriceStepChange = (selectedOption) => {
+    if (selectedOption) {
+      console.log("Selected Price:", selectedOption.value);
+      dispatch(setPrice(selectedOption.value));
+    } else {
+      toast.error("Selected Price is undefined");
+    }
+  };
+
+  const formatMileage = (value) => {
+    if (value !== undefined && value !== null && value !== "") {
+      const cleanedValue = value.toString().replace(/,/g, "");
+      const formattedValue = cleanedValue.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      return formattedValue;
+    }
+    return null;
+  };
+
+  console.log("Selected Price:", selectedPrice);
+
+  const handleMinInputChange = (e) => {
+    setMinValue(e.target.value);
+  };
+
+  const handleMaxInputChange = (e) => {
+    setMaxValue(e.target.value);
+  };
+
+  const filteredPrices = adverts.filter(
+    (advert) => selectedPrice === null || advert.rentalPrice <= selectedPrice
   );
-  const [selectedOption, setSelectedOption] = useState(null);
+  const filteredPricesOptions = filteredPrices.map((advert) => ({
+    value: advert.rentalPrice,
+    label: `${advert.rentalPrice}`,
+  }));
 
-  const handleBrandInputChange = (selectedOption) => {
-    setSelectedOption(selectedOption);
-  };
-
-  const handleMenuClose = () => {
-    setAllModelCars(modelCars.map((model) => ({ value: model, label: model })));
-    setBrands(selectedOption ? selectedOption.value : "");
-  };
-
-  const handleMenuOpen = () => {
-    setAllModelCars(modelCars.map((model) => ({ value: model, label: model })));
-  };
-
-  const handleInputChangeOne = (event) => {
-    const numericValue = event.target.value.replace(/[^\d]/g, "");
-    const formattedValue = numericValue.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-
-    if (numericValue >= 0 && numericValue <= 1000000) {
-      setInputValueOne(formattedValue);
-      setIsValidOne(true);
-    } else {
-      setIsValidOne(false);
+  const handleFilterClick = () => {
+    if (
+      parseInt(minValue.replace(/,/g, ""), 10) >
+      parseInt(maxValue.replace(/,/g, ""), 10)
+    ) {
+      toast.error("The maximum mileage must exceed the minimum mileage.");
+      return;
     }
-  };
 
-  const handleInputChangeTwo = (event) => {
-    const numericValue = event.target.value.replace(/[^\d]/g, "");
-    const formattedValue = numericValue.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    const newFilters = {
+      make: selectedMake ? selectedMake.value : null,
+      filteredPrices: filteredPricesOptions,
+      minMileage: parseInt(minValue.replace(/,/g, ""), 10),
+      maxMileage: parseInt(maxValue.replace(/,/g, ""), 10),
+    };
 
-    if (numericValue >= 0 && numericValue <= 1000000) {
-      setInputValueTwo(formattedValue);
-      setIsValidTwo(true);
-    } else {
-      setIsValidTwo(false);
-    }
+    onFilterChange(newFilters);
   };
 
   return (
-    <Form>
-      <div>
-        <Label>
-          Car brand
-          <div style={{ position: "relative" }}>
-            <StyledCustomSelect
-              isSearchable
-              value={selectedOption}
-              options={allModelCars}
-              onChange={handleBrandInputChange}
-              onMenuOpen={handleMenuOpen}
-              onMenuClose={handleMenuClose}
-              inputValue={brands}
-              onInputChange={(input) => setBrands(input)}
-              placeholder="Select Car Brand"
-            />
-          </div>
-        </Label>
-      </div>
-      <div>
-        <Label>
-          Price/ 1 hour
-          <SelectPriceStyled
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-          >
-            {priceOptions.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </SelectPriceStyled>
-        </Label>
-      </div>
+    <Container>
+      <Form onSubmit={applyFilter}>
+        <SelectContainer>
+          <Label htmlFor="nameSelect">Car brand</Label>
+          <Select
+            id="nameSelect"
+            placeholder="Enter the text"
+            value={selectedMake}
+            onChange={(selectedOption) => dispatch(setMake(selectedOption))}
+            options={makeOptions}
+            isClearable={true}
+            styles={{
+              control: (styles) => ({
+                ...styles,
+                width: "224px",
+                height: "48px",
+                border: "none",
+                boxShadow: "none",
+                borderRadius: "14px",
+                padding: "8px",
+                fontSize: "18px",
+                backgroundColor: "rgba(247, 247, 251, 1)",
+                appearance: "none",
+              }),
+              option: (styles, { isFocused }) => {
+                return {
+                  ...styles,
+                  color: isFocused ? "black" : "rgba(18, 20, 23, 0.2)",
+                };
+              },
+              menuList: (base) => ({
+                ...base,
+                "::-webkit-scrollbar": {
+                  width: "9px",
+                },
+                "::-webkit-scrollbar-track": {
+                  background: "rgba(18, 20, 23, 0.05)",
+                },
+                "::-webkit-scrollbar-thumb": {
+                  background: "rgba(18, 20, 23, 0.05)",
+                },
+                "::-webkit-scrollbar-thumb:hover": {
+                  background: "rgba(18, 20, 23, 0.05)",
+                },
+              }),
+              placeholder: (styles) => ({
+                ...styles,
+                color: "rgba(18, 20, 23, 1)",
+              }),
+            }}
+            components={{
+              IndicatorSeparator: () => null,
+            }}
+          />
+        </SelectContainer>
 
-      <div>
-        <Label>
-          Сar mileage / km
-          <InputWrapper>
-            <Div>
-              <Span>From</Span>
-              <InputStyledOne
-                type="text"
-                value={inputValueOne}
-                onChange={handleInputChangeOne}
-              />
-              {!isValidOne && (
-                <div style={{ color: "red" }}>
-                  Enter a value less than 1 mil.
-                </div>
-              )}
-            </Div>
-            <Divider></Divider>
-            <Div>
-              <Span>To</Span>
-              <InputStyledTwo
-                type="text"
-                value={inputValueTwo}
-                onChange={handleInputChangeTwo}
-              />
-              {!isValidTwo && (
-                <div style={{ color: "red" }}>
-                  Enter a value less than 1 mil.
-                </div>
-              )}
-            </Div>
-          </InputWrapper>
-        </Label>
-      </div>
-      <ButtonStyled type="submit">Search</ButtonStyled>
-    </Form>
+        <SelectContainer>
+          <Label htmlFor="priceSelect">Price/ 1 hour</Label>
+          <Select
+            id="priceSelect"
+            placeholder="To $"
+            value={selectedPrice}
+            onChange={handlePriceStepChange}
+            options={priceRangeOptions}
+            isClearable
+            styles={{
+              control: (styles) => ({
+                ...styles,
+                width: "125px",
+                height: "48px",
+                borderColor: "rgba(18, 20, 23, 0.2)",
+                border: "none",
+                boxShadow: "none",
+                borderRadius: "14px",
+                padding: "8px",
+                fontSize: "18px",
+                backgroundColor: "rgba(247, 247, 251, 1)",
+                appearance: "none",
+              }),
+              option: (styles, { isFocused }) => {
+                return {
+                  ...styles,
+                  color: isFocused ? "black" : "rgba(18, 20, 23, 0.2)",
+                  fontFamily: "ManropeMedium",
+                };
+              },
+              menuList: (base) => ({
+                ...base,
+                "::-webkit-scrollbar": {
+                  width: "9px",
+                },
+                "::-webkit-scrollbar-track": {
+                  background: "rgba(18, 20, 23, 0.05)",
+                },
+                "::-webkit-scrollbar-thumb": {
+                  background: "rgba(18, 20, 23, 0.05)",
+                },
+                "::-webkit-scrollbar-thumb:hover": {
+                  background: "rgba(18, 20, 23, 0.05)",
+                },
+              }),
+              placeholder: (styles) => ({
+                ...styles,
+                color: "rgba(18, 20, 23, 1)",
+              }),
+            }}
+            components={{
+              IndicatorSeparator: () => null,
+            }}
+          />
+        </SelectContainer>
+        <Wrapper>
+          <Label>Car mileage / km</Label>
+          <InputContainer>
+            <InputLeft
+              type="text"
+              value={formatMileage(minValue) || ""}
+              onChange={handleMinInputChange}
+              style={{ color: "black" }}
+            />
+            <UnitLeft>From</UnitLeft>
+            <InputRight
+              type="text"
+              value={formatMileage(maxValue) || ""}
+              onChange={handleMaxInputChange}
+              style={{ color: "black" }}
+            />
+            <UnitRight>To</UnitRight>
+          </InputContainer>
+        </Wrapper>
+      </Form>
+      <SearchButton
+        type="button"
+        onClick={handleFilterClick}
+        style={{ width: "135px" }}
+      >
+        Search
+      </SearchButton>
+    </Container>
   );
 };
-
 export default CatalogForm;

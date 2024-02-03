@@ -60,17 +60,3 @@ export const TextWrapper = styled("div")`
   overflow: hidden;
   margin-bottom: 28px;
 `;
-
-export const StyledButton = styled("button")`
-  width: 274px;
-  height: 44px;
-  border-radius: 12px;
-  border: none;
-  background-color: rgba(52, 112, 255, 1);
-  color: rgba(255, 255, 255, 1);
-
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 1.43;
-  color: #fff;
-`;

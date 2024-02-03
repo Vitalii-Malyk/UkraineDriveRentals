@@ -1,7 +1,6 @@
 import {
   ImgWrapper,
   ItemWrapper,
-  StyledButton,
   StyledImg,
   StyledSpan,
   StyledText,
@@ -11,10 +10,11 @@ import {
 } from "./CatalogItem.styled";
 import placeholderImage from "../../helpers/image/404.jpg";
 
-import FavoritesBtn from "../Buttons/FavoritesButton";
 import { useState } from "react";
 import CardAboutCars from "../CardAboutCars/CardAboutCars";
 import Modal from "../Modal/Modal";
+import FavoritesButton from "../Buttons/FavoritesButton";
+import LearnMoreButton from "../Buttons/LearnMoreButton";
 
 const CatalogItem = ({
   make,
@@ -39,7 +39,7 @@ const CatalogItem = ({
   return (
     <>
       <ItemWrapper>
-        <FavoritesBtn
+        <FavoritesButton
           advert={{
             make,
             img,
@@ -67,7 +67,9 @@ const CatalogItem = ({
         <TextWrapper>
           <StyledText>{`${city} | ${country} | ${rentalCompany} | ${type} | ${model} | ${id} | ${functional}`}</StyledText>
         </TextWrapper>
-        <StyledButton>Learn more</StyledButton>
+        <LearnMoreButton setIsModalOpen={setIsModalOpen}>
+          Learn more
+        </LearnMoreButton>
       </ItemWrapper>
       <Modal
         isOpen={isModalOpen}

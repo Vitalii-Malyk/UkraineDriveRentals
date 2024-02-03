@@ -1,9 +1,7 @@
-// //65bb657e52189914b5bbfb17.mockapi.io/api/
-// brands
-// adverts
-
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 axios.defaults.baseURL = "https://65babcceb4d53c0665538e25.mockapi.io/api";
 
@@ -41,18 +39,19 @@ export const getAdvertById = async (id) => {
     console.log(error);
   }
 };
-export const getAdvertsByFilters = createAsyncThunk(
-  "adverts/getAdverts",
-  async ({ brand }, thunkAPI) => {
+export const fetchFilteredAdverts = createAsyncThunk(
+  "adverts/filteredAdverts",
+  async ({ make, rentalPrice }, thunkAPI) => {
+    const filter =
+      (make !== null ? { make } : {}) ||
+      (rentalPrice !== null ? { rentalPrice } : {});
+
     try {
-      console.log(brand);
-      const { data } = await axios.get(`/adverts`, {
-        params: { make: brand },
-      });
-      console.log(data);
-      return data;
+      const response = await axios.get(`/adverts/${filter}`);
+      toast.success("We've found a few adverts for your request");
+      return response.data;
     } catch (error) {
-      console.log(error.message);
+      toast.error(error.message);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
