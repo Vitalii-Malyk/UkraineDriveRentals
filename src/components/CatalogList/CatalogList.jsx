@@ -1,6 +1,6 @@
-import { List, ListWrapper, LoadMoreButton } from "./CatalogList.styled";
+import { List, ListWrapper } from "./CatalogList.styled";
 // import NotFoundMessage from "../NotAutoMessage/NotAutoMessage";
-import Loader from "../Loader/Loader";
+// import Loader from "../Loader/Loader";
 import CatalogItem from "../CatalogItem/CatalogItem";
 
 const CatalogList = ({ adverts }) => {
