@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/shop_auto/static/css/main.f32403fb.css",
-    "main.js": "/shop_auto/static/js/main.f13bb0ec.js",
+    "main.js": "/shop_auto/static/js/main.a4a3c2e6.js",
     "static/media/bgimg.jpg": "/shop_auto/static/media/bgimg.44d0f6f5928d96de3741.jpg",
     "static/media/sprite.svg": "/shop_auto/static/media/sprite.8c21463453e117461926b6445fae31e8.svg",
     "index.html": "/shop_auto/index.html",
     "main.f32403fb.css.map": "/shop_auto/static/css/main.f32403fb.css.map",
-    "main.f13bb0ec.js.map": "/shop_auto/static/js/main.f13bb0ec.js.map"
+    "main.a4a3c2e6.js.map": "/shop_auto/static/js/main.a4a3c2e6.js.map"
   },
   "entrypoints": [
     "static/css/main.f32403fb.css",
-    "static/js/main.f13bb0ec.js"
+    "static/js/main.a4a3c2e6.js"
   ]
 }
