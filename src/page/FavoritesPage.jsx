@@ -1,11 +1,23 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { selectFavorites } from "../redux/selectors";
-import AdvertsList from "../components/CatalogList/CatalogList";
+import { selectFavorites, selectTotalFavorites } from "../redux/selectors";
+import CatalogList from "../components/CatalogList/CatalogList";
 
-const FavoritesPage = () => {
-  const favoriteAdverts = useSelector(selectFavorites);
-  return <>{favoriteAdverts && <AdvertsList adverts={favoriteAdverts} />}</>;
+const FavoritePage = () => {
+  const totalFavorites = useSelector(selectTotalFavorites);
+  const favAdverts = useSelector(selectFavorites);
+
+  return (
+    <div>
+      {totalFavorites > 0 ? (
+        <CatalogList adverts={favAdverts} />
+      ) : (
+        <div>
+          <p>There are no adverts yet</p>
+        </div>
+      )}
+    </div>
+  );
 };
 
-export default FavoritesPage;
+export default FavoritePage;

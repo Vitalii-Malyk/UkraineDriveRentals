@@ -12,6 +12,9 @@ import {
 import placeholderImage from "../../helpers/image/404.jpg";
 
 import FavoritesBtn from "../Buttons/FavoritesButton";
+import { useState } from "react";
+import CardAboutCars from "../CardAboutCars/CardAboutCars";
+import Modal from "../Modal/Modal";
 
 const CatalogItem = ({
   make,
@@ -26,6 +29,7 @@ const CatalogItem = ({
   rentalCompany,
   functionalities,
 }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const addressWords = address.split(" ");
   const city = addressWords[addressWords.length - 2].slice(0, -1);
   const country = addressWords[addressWords.length - 1];
@@ -65,6 +69,14 @@ const CatalogItem = ({
         </TextWrapper>
         <StyledButton>Learn more</StyledButton>
       </ItemWrapper>
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => {
+          setIsModalOpen(false);
+        }}
+      >
+        <CardAboutCars id={id} make={make} />
+      </Modal>
     </>
   );
 };
