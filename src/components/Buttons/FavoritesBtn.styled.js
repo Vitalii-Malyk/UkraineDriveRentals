@@ -9,6 +9,9 @@ export const FavBtn = styled.button`
   border: 0;
   padding: 0;
   display: flex;
+  position: absolute;
+  top: 14px;
+  right: 14px;
   align-items: center;
   justify-content: center;
   cursor: pointer;

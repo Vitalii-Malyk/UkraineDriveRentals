@@ -6,7 +6,7 @@ export const LoadMoreBtn = styled.button`
   width: 200px;
   padding-top: 12px;
   padding-bottom: 12px;
-  background-color: var(--color-brend);
+  background-color: var(--color-brand);
   color: var(--color-wight);
   border-radius: 12px;
   margin: 50px auto;
@@ -20,6 +20,6 @@ export const LoadMoreBtn = styled.button`
   transition: 500ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover,
   :focus {
-    background-color: var(--color-acsent);
+    background-color: var(--color-accent);
   }
 `;

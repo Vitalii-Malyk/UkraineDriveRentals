@@ -1,4 +1,4 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import {
   FLUSH,
   REHYDRATE,
@@ -12,17 +12,21 @@ import persistStore from "redux-persist/es/persistStore";
 import storage from "redux-persist/lib/storage";
 import { favoriteReducer } from "./favoriteSlice.js";
 import { advertsReducer } from "./advertsSlice.js";
+import { filterReducer } from "./filterSlice.js";
 
 const favoritePersistConfig = {
   key: "favorite",
   storage,
+  whitelist: ["favorites"],
 };
-const reduser = combineReducers({
-  adverts: advertsReducer,
-  favorites: persistReducer(favoritePersistConfig, favoriteReducer),
-});
+
 export const store = configureStore({
-  reducer: reduser,
+  reducer: {
+    favorites: persistReducer(favoritePersistConfig, favoriteReducer),
+    adverts: advertsReducer,
+    filter: filterReducer,
+  },
+
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
@@ -30,4 +34,5 @@ export const store = configureStore({
       },
     }),
 });
+
 export const persistor = persistStore(store);
