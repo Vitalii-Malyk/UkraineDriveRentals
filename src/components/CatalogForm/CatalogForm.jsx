@@ -18,7 +18,12 @@ import {
 } from "./CatalogForm.styled";
 
 import { useState } from "react";
-import { setMake, setPrice } from "../../redux/filterSlice";
+import {
+  setMake,
+  setPrice,
+  setOnMinValue,
+  setOnMaxValue,
+} from "../../redux/filterSlice";
 import { fetchFilteredAdverts } from "../../services/Api";
 
 const CatalogForm = ({ onFilterChange }) => {
@@ -67,10 +72,14 @@ const CatalogForm = ({ onFilterChange }) => {
 
   const handleMinInputChange = (e) => {
     setMinValue(e.target.value);
+    console.log(e.target.value);
+    dispatch(setOnMinValue(e.target.value));
   };
 
   const handleMaxInputChange = (e) => {
     setMaxValue(e.target.value);
+    console.log(e.target.value);
+    dispatch(setOnMaxValue(e.target.value));
   };
 
   const filteredPrices = adverts.filter(

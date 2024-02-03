@@ -17,10 +17,10 @@ const filterSlice = createSlice({
       state.selectedPrice = action.payload;
       state.selectedPriceLabel = action.payload ? `${action.payload}` : null;
     },
-    setMinValue(state, action) {
+    setOnMinValue(state, action) {
       state.minValue = action.payload;
     },
-    setMaxValue(state, action) {
+    setOnMaxValue(state, action) {
       state.maxValue = action.payload;
     },
   },
@@ -30,8 +30,8 @@ export const {
   setMake,
   setPrice,
   selectedPriceLabel,
-  setMinValue,
-  setMaxValue,
+  setOnMinValue,
+  setOnMaxValue,
 } = filterSlice.actions;
 
 export const filterReducer = filterSlice.reducer;
