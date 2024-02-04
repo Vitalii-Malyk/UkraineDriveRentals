@@ -3,9 +3,11 @@ import { lazy } from "react";
 
 import Layout from "../../components/Layout";
 
-const HomePage = lazy(() => import("../../page/HomePage"));
-const CatalogPage = lazy(() => import("../../page/CatalogPage"));
-const FavoritePage = lazy(() => import("../../page/FavoritesPage"));
+const HomePage = lazy(() => import("../../page/HomePage/HomePage"));
+const CatalogPage = lazy(() => import("../../page/CatalogPage/CatalogPage"));
+const FavoritePage = lazy(() =>
+  import("../../page/FavoritesPage/FavoritesPage")
+);
 
 function App() {
   return (

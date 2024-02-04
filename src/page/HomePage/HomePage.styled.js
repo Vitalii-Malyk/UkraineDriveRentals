@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import bgImage from "../helpers/image/bgimg.jpg";
+import bgImage from "../../helpers/image/bgimg.jpg";
 
 export const HomeContainer = styled("div")`
   display: flex;
@@ -21,15 +21,32 @@ export const Title = styled("h1")`
 export const Description = styled("p")`
   font-size: 1.2rem;
   text-align: center;
-  max-width: 600px;
-  margin-bottom: 40px;
+  max-width: 800px;
+  margin-bottom: 20px;
+  font-size: 20px;
 `;
 
 export const ServiceList = styled("ul")`
-  list-style-type: none;
-  padding: 0;
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  max-width: 800px;
 `;
 
 export const ServiceItem = styled("li")`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   margin-bottom: 10px;
+  font-size: 16px;
+`;
+
+export const ServiceListText = styled("ul")`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: center;
+  margin-top: 20px;
 `;

@@ -1,5 +1,5 @@
-import { CarsList } from "../components/CatalogList";
-import { Filters } from "../components/CatalogForm";
+import { CarsList } from "../../components/CatalogList";
+import { Filters } from "../../components/CatalogForm";
 
 import { Container } from "./CatalogPage.styled";
 
