@@ -1,3 +1,9 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+import { selectAllCars } from "../redux/selectors";
+import { getAllCarsThunk } from "services/Api";
+
 import {
   Description,
   HomeContainer,
@@ -7,6 +13,14 @@ import {
 } from "./HomePage.styled";
 
 const HomePage = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllCarsThunk());
+  }, [dispatch]);
+
+  const staticAllCars = useSelector(selectAllCars);
+
   return (
     <HomeContainer>
       <Title>Вітаємо в нашій службі прокату автомобілів</Title>
@@ -15,7 +29,9 @@ const HomePage = () => {
         Обирайте авто, яке вам потрібно, і насолоджуйтеся подорожжю.
       </Description>
       <ServiceList>
-        <ServiceItem>Широкий вибір автомобілів</ServiceItem>
+        <ServiceItem>
+          Широкий вибір автомобілів ({staticAllCars.length})
+        </ServiceItem>
         <ServiceItem>Гнучкі тарифи та умови</ServiceItem>
         <ServiceItem>Професійне обслуговування</ServiceItem>
         <ServiceItem>Зручне онлайн-бронювання</ServiceItem>

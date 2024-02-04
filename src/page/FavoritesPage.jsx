@@ -1,23 +1,35 @@
-import React from "react";
 import { useSelector } from "react-redux";
-import { selectFavorites, selectTotalFavorites } from "../redux/selectors";
-import CatalogList from "../components/CatalogList/CatalogList";
 
-const FavoritePage = () => {
-  const totalFavorites = useSelector(selectTotalFavorites);
-  const favAdverts = useSelector(selectFavorites);
+import { CarItem } from "../components/CatalogItem";
+import { selectFavoriteCars } from "../redux/selectors";
+
+import { Section } from "./FavoritePage.styled";
+import {
+  CarsListStyle,
+  Container,
+  NotFound,
+} from "../components/CatalogList/CatalogList.styled";
+
+const Favorite = () => {
+  const favoriteCars = useSelector(selectFavoriteCars);
 
   return (
-    <div>
-      {totalFavorites > 0 ? (
-        <CatalogList adverts={favAdverts} />
-      ) : (
-        <div>
-          <p>There are no adverts yet</p>
-        </div>
-      )}
-    </div>
+    <Section>
+      <Container>
+        {favoriteCars?.length > 0 ? (
+          <CarsListStyle>
+            {favoriteCars?.map((car, index) => (
+              <CarItem car={car} key={index} />
+            ))}
+          </CarsListStyle>
+        ) : (
+          <NotFound>
+            <p>Немає обраних автомобілів, додайте автомобілі в обране</p>
+          </NotFound>
+        )}
+      </Container>
+    </Section>
   );
 };
 
-export default FavoritePage;
+export default Favorite;

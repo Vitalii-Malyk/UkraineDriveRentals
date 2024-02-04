@@ -1,8 +1,7 @@
-export const selectAdverts = (state) => state.adverts.adverts;
-export const selectBrand = (state) => state.adverts.brand;
-export const selectIsLoading = (state) => state.adverts.isLoading;
-export const selectFavorites = (state) => state.favorites.adverts;
-export const selectPage = (state) => state.adverts.page;
-export const selectFilter = (state) => state.filter;
-export const selectTotalFavorites = (state) => state.favorites.adverts.length;
-export const selectError = (state) => state.adverts.isError;
+export const selectCars = (state) => state.cars.cars;
+export const selectAllCars = (state) => state.cars.allCars;
+export const selectCarBrands = (state) => state.cars.carsBrands;
+export const selectFavoriteCars = (state) => state.favorite.favorites;
+export const selectFilter = (state) => state.filter.filter;
+export const selectFilterCars = (state) => state.filter.filterCars;
+export const selectAppState = (state) => state.appState;

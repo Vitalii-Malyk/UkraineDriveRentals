@@ -1,144 +1,215 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 50px;
-  gap: 8px;
-  align-items: flex-end;
-  @media screen and (max-width: 425px) {
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
-  }
-  @media screen and (max-width: 768px) {
-    flex-direction: column;
-    align-items: center;
-    gap: 14px;
-  }
-`;
-
-export const SelectContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-export const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-export const InputContainer = styled.div`
-  display: flex;
-  position: relative;
-  height: 48px;
-  align-items: flex-end;
-`;
-
 export const Form = styled.form`
   display: flex;
-  gap: 8px;
-  text-align: start;
-  @media screen and (max-width: 425px) {
-    flex-direction: column;
-    align-items: center;
-  }
-  @media screen and (max-width: 768px) {
-    align-items: center;
-  }
+  align-items: flex-end;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 18px;
 `;
 
 export const Label = styled.label`
-  font-size: var(--fs-sm);
-  color: rgba(138, 138, 137, 1);
-  padding-left: 5px;
-  margin-top: 50px;
-  margin-bottom: 8px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  color: var(--color-text-label);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.29;
 `;
 
-export const InputLeft = styled.input`
-  display: block;
+export const InputWrap = styled.div`
+  display: flex;
+  align-items: flex-end;
+`;
+
+export const Input = styled.input`
   width: 160px;
   height: 48px;
+  padding: ${(props) => props.$padding || "14px 14px 14px 70px"};
+  margin-top: 8px;
+  border-radius: ${(props) => props.$radius || "14px"};
   border: none;
-  border-right: 1px solid rgba(138, 138, 137, 0.2);
-  background-color: rgba(247, 247, 251, 1);
-  border-radius: 14px 0 0 14px;
-  padding-left: 0;
-  text-indent: 70px;
+  border-right: ${(props) => props.$border || "none"};
+  background-color: var(--color-filter-field);
+  color: transparent;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.11;
 
-  color: rgba(18, 20, 23, 1);
-  font-size: var(--fs-lg);
   &:focus {
-    outline: none;
+    outline-color: var(--color-button);
   }
-  // @media screen and (max-width: 768px) {
-  //   width: 120px;
-  // }
 `;
 
-export const InputRight = styled.input`
-  display: block;
-  width: 160px;
-  height: 48px;
-  border: none;
-  background-color: rgba(247, 247, 251, 1);
-  border-radius: 0 14px 14px 0;
-  padding-left: 0;
-  text-indent: 45px;
-
-  color: var(--color-text);
-  font-size: var(--fs-lg);
-  &:focus {
-    outline: none;
-  }
-  // @media screen and (max-width: 768px) {
-  //   width: 120px;
-  // }
-`;
-
-export const UnitLeft = styled.span`
+export const FalseInput = styled.div`
+  display: flex;
   position: absolute;
-  display: block;
-  left: 20px;
-  top: 13px;
-  color: var(--color-black);
-  font-size: var(--fs-lg);
+  left: ${(props) => props.$left || "24px"};
+  bottom: 14px;
+  color: var(--color-text-main);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.1;
 `;
 
-export const UnitRight = styled.span`
-  position: absolute;
-  display: block;
-  left: 180px;
-  top: 13px;
-  color: var(--color-black);
-  font-size: var(--fs-lg);
-  // @media screen and (max-width: 768px) {
-  //   left: 140px;
-  // }
+export const WrapSecondInput = styled.div`
+  position: relative;
 `;
 
-export const SearchButton = styled.button`
-  display: inline-blok;
-  width: 136px;
-  height: 48px;
-  // padding: 12px 99px;
+export const Button = styled.button`
+  display: flex;
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
-  font-size: var(--fs-sm);
-  font-weight: var(--fw-normal);
-  line-height: 1.42;
-  color: var(--color-wight);
-  text-transform: none;
-  background-color: var(--color-brand);
-  cursor: pointer;
+  width: ${(props) => props.width || "136px"};
+  height: 48px;
+  padding: 14px;
+  border: none;
   border-radius: 12px;
-  border: 1px solid var(--color-brand);
-  outline: none;
+  background: var(--color-button);
+  color: var(--color-text-button-and-bg);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
 
-  &:hover {
-    background-color: var(--color-accent);
-    border: 1px solid var(--color-accent);
+  &:hover,
+  &:focus {
+    background: var(--color-button-hover);
   }
 `;
+
+export const customStyles = {
+  option: (defaultStyles, state) => ({
+    ...defaultStyles,
+    fontSize: "16px",
+    lineHeight: "1.25",
+    fontWeight: "500",
+    color: state.isSelected
+      ? "var(--color-text-main)"
+      : "rgba(18, 20, 23, 0.20)",
+    backgroundColor: "var(--color-text-button-and-bg)",
+    cursor: "pointer",
+    padding: "0px",
+    margin: "0px",
+
+    "&:not(:last-child)": {
+      marginBottom: "8px",
+    },
+  }),
+
+  singleValue: (defaultStyles) => ({
+    ...defaultStyles,
+    fontSize: "18px",
+    lineHeight: "1.11",
+    color: "var(--color-text-main)",
+  }),
+
+  menu: (defaultStyles) => ({
+    ...defaultStyles,
+    width: "224px",
+    height: "272px",
+    padding: "14px 8px 14px 18px",
+    borderRadius: "14px",
+    border: "1px solid rgba(18, 20, 23, 0.05)",
+    background: "var(--color-text-button-and-bg)",
+    boxShadow: "0px 4px 36px 0px rgba(0, 0, 0, 0.02)",
+  }),
+
+  indicatorSeparator: (defaultStyles) => ({
+    ...defaultStyles,
+    backgroundColor: "transparent",
+  }),
+
+  dropdownIndicator: (defaultStyles) => ({
+    ...defaultStyles,
+    paddingRight: "18px",
+    color: "var(--color-text-main)",
+  }),
+
+  container: (defaultStyles, state) => ({
+    ...defaultStyles,
+    border: `none`,
+    borderRadius: "14px",
+    marginTop: "8px",
+    outline: "none",
+  }),
+
+  valueContainer: (styles) => ({
+    ...styles,
+    padding: "14px 0px 14px 18px",
+    margin: "0px",
+  }),
+
+  input: (styles) => ({
+    ...styles,
+    padding: "0px",
+    margin: "0px",
+  }),
+
+  menuList: (base) => ({
+    ...base,
+    margin: "0px",
+    padding: "0px",
+    height: "244px",
+    overflowY: "auto",
+    "&::-webkit-scrollbar": {
+      width: "8px",
+    },
+    "&::-webkit-scrollbar-thumb": {
+      background: "rgba(18, 20, 23, 0.05)",
+      borderRadius: "10px",
+    },
+  }),
+
+  placeholder: (defaultStyles) => ({
+    ...defaultStyles,
+    color: "var(--color-text-main)",
+    fontWeight: "500",
+    fontSize: "18px",
+    lineHeight: "1.11",
+    margin: "0px",
+    padding: "0px",
+  }),
+};
+
+export const firstSelectStyles = {
+  ...customStyles,
+  control: (defaultStyles) => ({
+    ...defaultStyles,
+    cursor: "pointer",
+    background: "var(--color-filter-field)",
+    appearance: "none",
+    WebkitAppearance: "none",
+    MozAppearance: "none",
+    height: "48px",
+    borderRadius: "14px",
+    border: "none",
+    outline: "none",
+    fontSize: "18px",
+    fontWeight: "500",
+    lineHeight: "1.11",
+    width: "224px",
+  }),
+};
+
+export const secondSelectStyles = {
+  ...customStyles,
+  control: (defaultStyles) => ({
+    ...defaultStyles,
+    cursor: "pointer",
+    background: "var(--color-filter-field)",
+    appearance: "none",
+    WebkitAppearance: "none",
+    MozAppearance: "none",
+    height: "48px",
+    borderRadius: "14px",
+    border: "none",
+    outline: "none",
+    fontSize: "18px",
+    fontWeight: "500",
+    lineHeight: "1.11",
+    width: "125px",
+    paddingLeft: "21px",
+  }),
+};

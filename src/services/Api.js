@@ -1,58 +1,38 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
-axios.defaults.baseURL = "https://65babcceb4d53c0665538e25.mockapi.io/api";
+axios.defaults.baseURL = "https://65ba7f71b4d53c0665531164.mockapi.io";
 
-export const getBrands = async () => {
+export const LIMIT_PAGE = 12;
+
+const getAllCars = async (_, { rejectWithValue }) => {
   try {
-    const { data } = await axios.get(`/brands`);
+    const { data } = await axios.get("/adverts");
     return data;
   } catch (error) {
-    console.log(error);
+    return rejectWithValue(error.message);
   }
 };
-export const getAllAdverts = createAsyncThunk(
-  "adverts/getAdverts",
-  async (page, thunkAPI) => {
-    try {
-      const { data } = await axios.get(`/adverts?page=${page}&limit=12`);
-      console.log(data);
-      return data;
-    } catch (error) {
-      console.log(error.message);
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-export const getAdvertById = async (id) => {
+
+const getCars = async (page, { rejectWithValue }) => {
   try {
-    const { data } = await axios.get(`/adverts`, {
-      params: {
-        id: id,
-      },
-    });
-    console.log(data);
+    const { data } = await axios.get(
+      `/adverts?page=${page}&limit=${LIMIT_PAGE}`
+    );
     return data;
   } catch (error) {
-    console.log(error);
+    return rejectWithValue(error.message);
   }
 };
-export const fetchFilteredAdverts = createAsyncThunk(
-  "adverts/filteredAdverts",
-  async ({ make, rentalPrice }, thunkAPI) => {
-    const filter =
-      (make !== null ? { make } : {}) ||
-      (rentalPrice !== null ? { rentalPrice } : {});
-
-    try {
-      const response = await axios.get(`/adverts/${filter}`);
-      toast.success("We've found a few adverts for your request");
-      return response.data;
-    } catch (error) {
-      toast.error(error.message);
-      return thunkAPI.rejectWithValue(error.message);
-    }
+const getStatic = async (_, { rejectWithValue }) => {
+  try {
+    const { data } = await axios.get(`/adverts$count`);
+    return data;
+  } catch (error) {
+    return rejectWithValue(error.message);
   }
-);
+};
+
+export const getCarsThunk = createAsyncThunk("cars/getCars", getCars);
+export const getAllCarsThunk = createAsyncThunk("cars/getAllCars", getAllCars);
+export const getStaticThunk = createAsyncThunk("cars/getStatic", getStatic);
