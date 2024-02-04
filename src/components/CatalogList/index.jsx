@@ -101,7 +101,7 @@ export const CarsList = () => {
     }
   }, [dispatch, filter, allCars]);
 
-  const totalPage = allCars.length / LIMIT_PAGE;
+  const totalPage = Math.ceil(allCars.length / LIMIT_PAGE);
 
   const onClickLoadMore = () => {
     if (page === totalPage - 1) {
