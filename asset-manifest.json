@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/shop_auto/static/css/main.70cc44a1.css",
-    "main.js": "/shop_auto/static/js/main.9cb93864.js",
-    "static/js/230.1f5acaf4.chunk.js": "/shop_auto/static/js/230.1f5acaf4.chunk.js",
-    "static/js/458.dc72a892.chunk.js": "/shop_auto/static/js/458.dc72a892.chunk.js",
-    "static/js/768.52760af9.chunk.js": "/shop_auto/static/js/768.52760af9.chunk.js",
-    "static/js/264.fc125a85.chunk.js": "/shop_auto/static/js/264.fc125a85.chunk.js",
-    "static/js/376.aaffb86c.chunk.js": "/shop_auto/static/js/376.aaffb86c.chunk.js",
-    "static/media/bgimg.jpg": "/shop_auto/static/media/bgimg.44d0f6f5928d96de3741.jpg",
-    "static/media/404.jpg": "/shop_auto/static/media/404.8c604c014910b8a105e3.jpg",
-    "static/media/sprite.svg": "/shop_auto/static/media/sprite.3df9a49e04cfc09da6251119dd996de9.svg",
-    "index.html": "/shop_auto/index.html",
-    "main.70cc44a1.css.map": "/shop_auto/static/css/main.70cc44a1.css.map",
-    "main.9cb93864.js.map": "/shop_auto/static/js/main.9cb93864.js.map",
-    "230.1f5acaf4.chunk.js.map": "/shop_auto/static/js/230.1f5acaf4.chunk.js.map",
-    "458.dc72a892.chunk.js.map": "/shop_auto/static/js/458.dc72a892.chunk.js.map",
-    "768.52760af9.chunk.js.map": "/shop_auto/static/js/768.52760af9.chunk.js.map",
-    "264.fc125a85.chunk.js.map": "/shop_auto/static/js/264.fc125a85.chunk.js.map",
-    "376.aaffb86c.chunk.js.map": "/shop_auto/static/js/376.aaffb86c.chunk.js.map"
+    "main.css": "/UkraineDriveRentals/static/css/main.70cc44a1.css",
+    "main.js": "/UkraineDriveRentals/static/js/main.3b1b1503.js",
+    "static/js/230.1f5acaf4.chunk.js": "/UkraineDriveRentals/static/js/230.1f5acaf4.chunk.js",
+    "static/js/458.dc72a892.chunk.js": "/UkraineDriveRentals/static/js/458.dc72a892.chunk.js",
+    "static/js/768.52760af9.chunk.js": "/UkraineDriveRentals/static/js/768.52760af9.chunk.js",
+    "static/js/264.fc125a85.chunk.js": "/UkraineDriveRentals/static/js/264.fc125a85.chunk.js",
+    "static/js/376.aaffb86c.chunk.js": "/UkraineDriveRentals/static/js/376.aaffb86c.chunk.js",
+    "static/media/bgimg.jpg": "/UkraineDriveRentals/static/media/bgimg.44d0f6f5928d96de3741.jpg",
+    "static/media/404.jpg": "/UkraineDriveRentals/static/media/404.8c604c014910b8a105e3.jpg",
+    "static/media/sprite.svg": "/UkraineDriveRentals/static/media/sprite.3df9a49e04cfc09da6251119dd996de9.svg",
+    "index.html": "/UkraineDriveRentals/index.html",
+    "main.70cc44a1.css.map": "/UkraineDriveRentals/static/css/main.70cc44a1.css.map",
+    "main.3b1b1503.js.map": "/UkraineDriveRentals/static/js/main.3b1b1503.js.map",
+    "230.1f5acaf4.chunk.js.map": "/UkraineDriveRentals/static/js/230.1f5acaf4.chunk.js.map",
+    "458.dc72a892.chunk.js.map": "/UkraineDriveRentals/static/js/458.dc72a892.chunk.js.map",
+    "768.52760af9.chunk.js.map": "/UkraineDriveRentals/static/js/768.52760af9.chunk.js.map",
+    "264.fc125a85.chunk.js.map": "/UkraineDriveRentals/static/js/264.fc125a85.chunk.js.map",
+    "376.aaffb86c.chunk.js.map": "/UkraineDriveRentals/static/js/376.aaffb86c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.70cc44a1.css",
-    "static/js/main.9cb93864.js"
+    "static/js/main.3b1b1503.js"
   ]
 }
