@@ -2,7 +2,7 @@
   "name": "shop_auto",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://Vitalii-Malyk.github.io/shop_auto/",
+  "homepage": "https://Vitalii-Malyk.github.io/UkraineDriveRentals/",
   "dependencies": {
     "@redux-devtools/extension": "^3.3.0",
     "@reduxjs/toolkit": "^2.1.0",
